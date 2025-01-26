@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://ogom6s06fblp"]
+
+[ext_resource type="Script" path="res://Scripts/credits.gd" id="1_hlaje"]
+
+[node name="credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hlaje")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -57.0
+offset_right = 1162.0
+offset_bottom = 676.0
+color = Color(0, 0.576471, 0.576471, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 909.0
+offset_bottom = 393.0
+text = "Credits:
+Assets: Ferris Milinazzo
+Programming: Daniel Brogen
+Game Design and Idea: The Bubble Busters"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 410.0
+offset_top = 430.0
+offset_right = 541.0
+offset_bottom = 485.0
+text = "Return to Game"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

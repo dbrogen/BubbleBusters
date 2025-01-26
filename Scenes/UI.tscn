@@ -1,0 +1,212 @@
+[gd_scene load_steps=29 format=3 uid="uid://cw2kqghoyrwu8"]
+
+[ext_resource type="Script" path="res://Scripts/UI.gd" id="1_0almg"]
+[ext_resource type="Texture2D" uid="uid://dmy18ut0iljgj" path="res://Assets/MainBubble.png" id="2_gw5qt"]
+[ext_resource type="Texture2D" uid="uid://xinvlvfuqtny" path="res://Assets/BubbleWands/bubblewand_red.png" id="3_osnui"]
+[ext_resource type="AudioStream" uid="uid://daxjejafaxotf" path="res://Audio/tone1.ogg" id="3_rqf7a"]
+[ext_resource type="Texture2D" uid="uid://dnc6el8c5wd7d" path="res://Assets/Bubble Machine.png" id="4_h7fcg"]
+[ext_resource type="Texture2D" uid="uid://cdl1uikrqqbmd" path="res://Assets/Extra Hands.png" id="5_8webj"]
+[ext_resource type="Texture2D" uid="uid://dn5qjfusauneh" path="res://Assets/Baby.png" id="5_eya61"]
+[ext_resource type="Texture2D" uid="uid://bwiirefp0k8o4" path="res://Assets/BubbleWands/bubblewand_orange.png" id="5_l75be"]
+[ext_resource type="Texture2D" uid="uid://ow13xqocw72" path="res://Assets/Bubble Factory.png" id="6_mhwxk"]
+[ext_resource type="Texture2D" uid="uid://cwwuqbdpe1m2p" path="res://Assets/Bubble Garden.png" id="8_a5tc5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f23hc"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_b5ii3"]
+device = -1
+keycode = 32
+unicode = 32
+
+[sub_resource type="Shortcut" id="Shortcut_5clax"]
+events = [SubResource("InputEventKey_b5ii3")]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p80kp"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_rfpdb"]
+device = -1
+keycode = 49
+unicode = 49
+
+[sub_resource type="Shortcut" id="Shortcut_m7ph0"]
+events = [SubResource("InputEventKey_rfpdb")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_6opj6"]
+device = -1
+keycode = 50
+unicode = 50
+
+[sub_resource type="Shortcut" id="Shortcut_h0ag5"]
+events = [SubResource("InputEventKey_6opj6")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_xj3q1"]
+device = -1
+keycode = 51
+unicode = 51
+
+[sub_resource type="Shortcut" id="Shortcut_gmfsy"]
+events = [SubResource("InputEventKey_xj3q1")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_oee5h"]
+device = -1
+keycode = 52
+unicode = 52
+
+[sub_resource type="Shortcut" id="Shortcut_k8pqa"]
+events = [SubResource("InputEventKey_oee5h")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_aahwh"]
+device = -1
+keycode = 53
+unicode = 53
+
+[sub_resource type="Shortcut" id="Shortcut_hjryp"]
+events = [SubResource("InputEventKey_aahwh")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_dabkk"]
+device = -1
+keycode = 54
+unicode = 54
+
+[sub_resource type="Shortcut" id="Shortcut_6ifpk"]
+events = [SubResource("InputEventKey_dabkk")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_nsng1"]
+device = -1
+keycode = 55
+unicode = 55
+
+[sub_resource type="Shortcut" id="Shortcut_wp7lm"]
+events = [SubResource("InputEventKey_nsng1")]
+
+[node name="UI" type="Control"]
+z_index = 4
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0almg")
+
+[node name="BubbleButton" type="Button" parent="."]
+z_index = 4
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 60.0
+offset_top = -120.0
+offset_right = 470.0
+offset_bottom = 123.0
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_f23hc")
+shortcut = SubResource("Shortcut_5clax")
+icon = ExtResource("2_gw5qt")
+flat = true
+expand_icon = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="BubbleButton"]
+stream = ExtResource("3_rqf7a")
+
+[node name="Label" type="Label" parent="."]
+z_index = 4
+layout_mode = 0
+offset_left = 24.0
+offset_top = 42.0
+offset_right = 319.0
+offset_bottom = 108.0
+text = "Bubble Count:"
+
+[node name="Upgrades" type="VBoxContainer" parent="."]
+z_index = 4
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -449.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Upgrades"]
+z_index = 4
+layout_mode = 2
+text = "Upgrades"
+horizontal_alignment = 1
+
+[node name="WandButton" type="Button" parent="Upgrades"]
+z_index = 4
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_p80kp")
+shortcut = SubResource("Shortcut_m7ph0")
+text = "More Bubbles Per Click"
+icon = ExtResource("3_osnui")
+
+[node name="MachineButton" type="Button" parent="Upgrades"]
+z_index = 4
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_p80kp")
+shortcut = SubResource("Shortcut_h0ag5")
+text = "Passive Bubs"
+icon = ExtResource("4_h7fcg")
+
+[node name="HandsButton" type="Button" parent="Upgrades"]
+visible = false
+layout_mode = 2
+shortcut = SubResource("Shortcut_gmfsy")
+text = "Extra Hands"
+icon = ExtResource("5_8webj")
+
+[node name="FactoryButton" type="Button" parent="Upgrades"]
+visible = false
+layout_mode = 2
+shortcut = SubResource("Shortcut_k8pqa")
+text = "Factory"
+icon = ExtResource("6_mhwxk")
+
+[node name="BabyButton" type="Button" parent="Upgrades"]
+visible = false
+layout_mode = 2
+shortcut = SubResource("Shortcut_hjryp")
+text = "Babies"
+icon = ExtResource("5_eya61")
+
+[node name="GardenButton" type="Button" parent="Upgrades"]
+visible = false
+layout_mode = 2
+shortcut = SubResource("Shortcut_6ifpk")
+text = "Garden"
+icon = ExtResource("8_a5tc5")
+
+[node name="GangsterButton" type="Button" parent="Upgrades"]
+visible = false
+layout_mode = 2
+shortcut = SubResource("Shortcut_wp7lm")
+text = "Gangsters"
+icon = ExtResource("5_l75be")
+
+[connection signal="mouse_entered" from="BubbleButton" to="." method="_on_bubble_button_mouse_entered"]
+[connection signal="mouse_exited" from="BubbleButton" to="." method="_on_bubble_button_mouse_exited"]
+[connection signal="pressed" from="BubbleButton" to="." method="_on_bubble_button_pressed"]
+[connection signal="mouse_entered" from="Upgrades/WandButton" to="." method="_on_wand_button_mouse_entered"]
+[connection signal="mouse_exited" from="Upgrades/WandButton" to="." method="_on_wand_button_mouse_exited"]
+[connection signal="pressed" from="Upgrades/WandButton" to="." method="_on_wand_button_pressed"]
+[connection signal="mouse_entered" from="Upgrades/MachineButton" to="." method="_on_machine_button_mouse_entered"]
+[connection signal="mouse_exited" from="Upgrades/MachineButton" to="." method="_on_machine_button_mouse_exited"]
+[connection signal="pressed" from="Upgrades/MachineButton" to="." method="_on_machine_button_pressed"]
+[connection signal="mouse_entered" from="Upgrades/HandsButton" to="." method="_on_hands_button_mouse_entered"]
+[connection signal="mouse_exited" from="Upgrades/HandsButton" to="." method="_on_hands_button_mouse_exited"]
+[connection signal="pressed" from="Upgrades/HandsButton" to="." method="_on_hands_button_pressed"]
+[connection signal="mouse_entered" from="Upgrades/FactoryButton" to="." method="_on_factory_button_mouse_entered"]
+[connection signal="mouse_exited" from="Upgrades/FactoryButton" to="." method="_on_factory_button_mouse_exited"]
+[connection signal="pressed" from="Upgrades/FactoryButton" to="." method="_on_factory_button_pressed"]
+[connection signal="mouse_entered" from="Upgrades/BabyButton" to="." method="_on_baby_button_mouse_entered"]
+[connection signal="mouse_exited" from="Upgrades/BabyButton" to="." method="_on_baby_button_mouse_exited"]
+[connection signal="pressed" from="Upgrades/BabyButton" to="." method="_on_baby_button_pressed"]
+[connection signal="mouse_entered" from="Upgrades/GardenButton" to="." method="_on_garden_button_mouse_entered"]
+[connection signal="mouse_exited" from="Upgrades/GardenButton" to="." method="_on_garden_button_mouse_exited"]
+[connection signal="pressed" from="Upgrades/GardenButton" to="." method="_on_garden_button_pressed"]
+[connection signal="mouse_entered" from="Upgrades/GangsterButton" to="." method="_on_gangster_button_mouse_entered"]
+[connection signal="mouse_exited" from="Upgrades/GangsterButton" to="." method="_on_gangster_button_mouse_exited"]
+[connection signal="pressed" from="Upgrades/GangsterButton" to="." method="_on_gangster_button_pressed"]
