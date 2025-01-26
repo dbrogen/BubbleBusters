@@ -95,10 +95,10 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 60.0
-offset_top = -120.0
-offset_right = 470.0
-offset_bottom = 123.0
+offset_left = 46.0
+offset_top = -121.5
+offset_right = 456.0
+offset_bottom = 121.5
 grow_vertical = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_f23hc")
 shortcut = SubResource("Shortcut_5clax")
@@ -125,7 +125,9 @@ anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -449.0
+offset_left = -439.0
+offset_top = 13.0
+offset_right = -4.0
 grow_horizontal = 0
 grow_vertical = 2
 
@@ -142,6 +144,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_p80kp")
 shortcut = SubResource("Shortcut_m7ph0")
 text = "More Bubbles Per Click"
 icon = ExtResource("3_osnui")
+autowrap_mode = 3
 
 [node name="MachineButton" type="Button" parent="Upgrades"]
 z_index = 4
@@ -150,6 +153,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_p80kp")
 shortcut = SubResource("Shortcut_h0ag5")
 text = "Passive Bubs"
 icon = ExtResource("4_h7fcg")
+autowrap_mode = 3
 
 [node name="HandsButton" type="Button" parent="Upgrades"]
 visible = false
@@ -157,6 +161,7 @@ layout_mode = 2
 shortcut = SubResource("Shortcut_gmfsy")
 text = "Extra Hands"
 icon = ExtResource("5_8webj")
+autowrap_mode = 3
 
 [node name="FactoryButton" type="Button" parent="Upgrades"]
 visible = false
@@ -164,6 +169,7 @@ layout_mode = 2
 shortcut = SubResource("Shortcut_k8pqa")
 text = "Factory"
 icon = ExtResource("6_mhwxk")
+autowrap_mode = 3
 
 [node name="BabyButton" type="Button" parent="Upgrades"]
 visible = false
@@ -171,6 +177,7 @@ layout_mode = 2
 shortcut = SubResource("Shortcut_hjryp")
 text = "Babies"
 icon = ExtResource("5_eya61")
+autowrap_mode = 3
 
 [node name="GardenButton" type="Button" parent="Upgrades"]
 visible = false
@@ -178,6 +185,7 @@ layout_mode = 2
 shortcut = SubResource("Shortcut_6ifpk")
 text = "Garden"
 icon = ExtResource("8_a5tc5")
+autowrap_mode = 3
 
 [node name="GangsterButton" type="Button" parent="Upgrades"]
 visible = false
@@ -185,6 +193,7 @@ layout_mode = 2
 shortcut = SubResource("Shortcut_wp7lm")
 text = "Gangsters"
 icon = ExtResource("5_l75be")
+autowrap_mode = 3
 
 [connection signal="mouse_entered" from="BubbleButton" to="." method="_on_bubble_button_mouse_entered"]
 [connection signal="mouse_exited" from="BubbleButton" to="." method="_on_bubble_button_mouse_exited"]
