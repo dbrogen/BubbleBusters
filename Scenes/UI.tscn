@@ -15,8 +15,8 @@
 
 [sub_resource type="InputEventKey" id="InputEventKey_b5ii3"]
 device = -1
-keycode = 32
-unicode = 32
+keycode = 66
+unicode = 98
 
 [sub_resource type="Shortcut" id="Shortcut_5clax"]
 events = [SubResource("InputEventKey_b5ii3")]
@@ -95,9 +95,9 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 46.0
+offset_left = 107.0
 offset_top = -121.5
-offset_right = 456.0
+offset_right = 517.0
 offset_bottom = 121.5
 grow_vertical = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_f23hc")
@@ -108,6 +108,22 @@ expand_icon = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="BubbleButton"]
 stream = ExtResource("3_rqf7a")
+
+[node name="HealthBar" type="ProgressBar" parent="BubbleButton"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -88.0
+offset_top = 12.0
+offset_right = -88.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 0
+max_value = 2.0
+step = 1.0
+value = 2.0
 
 [node name="Label" type="Label" parent="."]
 z_index = 4
