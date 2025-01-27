@@ -3,8 +3,10 @@ extends Control
 
 @export var numBubbles: float = 0.0;
 @export var bubblesPerClick: int = 1;
-@export var bubbleMaxHealth: int = 2;
+@export var bubbleMaxHealth: int = 1;
 @export var bubbleCurrentHealth: int = bubbleMaxHealth;
+
+var bubbleIcon = preload("res://Assets/MainBubble.png");
 
 var machineUnlocked: bool = false;
 var babiesUnlocked: bool = false;
@@ -31,6 +33,7 @@ var gangstersLevel: int = Global.gangstersLevel;
 ## On scene load set the main text for the scene label and button
 func _ready() -> void:
 	numBubbles = Global.bubblesPopped;
+	bubbleCurrentHealth = Global.bubbleCurrentHealth;
 	
 	$BubbleButton.text = "";
 	$Label.text = "Bubbles Popped: " + str(numBubbles);
@@ -87,13 +90,11 @@ func _ready() -> void:
 	else:
 		$Upgrades/WandButton.text = "(7) Bubble Busters (Level " + str(gangstersLevel) + ")";
 
-func _process(_delta: float) -> void:
-	Global.bubblesPopped = numBubbles;
-	print("Global Bubbles"  + str(Global.bubblesPopped));
-	
+func _process(_delta: float) -> void:	
 	Global.bubbleMaxHealth = bubbleMaxHealth;
-	Global.bubblesPopped = bubbleCurrentHealth;
+	Global.bubbleCurrentHealth = bubbleCurrentHealth;
 	
+	Global.bubblesPopped = numBubbles;
 	
 	Global.wandLevel = wandLevel;
 	Global.machineLevel = machineLevel;
@@ -150,6 +151,10 @@ func _on_bubble_button_pressed() -> void:
 	if(bubbleCurrentHealth <= 0):
 		numBubbles += 1;
 		bubbleCurrentHealth = bubbleMaxHealth;
+		$BubbleButton.icon = null;
+		var timer = get_tree().create_timer(.02);
+		await timer.timeout;
+		$BubbleButton.icon = bubbleIcon;
 
 func _on_bubble_button_mouse_entered() -> void:
 	$BubbleButton.text = " (B)     Click to Pop";

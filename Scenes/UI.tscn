@@ -106,24 +106,24 @@ icon = ExtResource("2_gw5qt")
 flat = true
 expand_icon = true
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="BubbleButton"]
-stream = ExtResource("3_rqf7a")
-
 [node name="HealthBar" type="ProgressBar" parent="BubbleButton"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -88.0
-offset_top = 12.0
-offset_right = -88.0
-offset_bottom = 52.0
+offset_left = -82.0
+offset_top = 17.5
+offset_right = -82.0
+offset_bottom = 44.5
 grow_horizontal = 2
 grow_vertical = 0
 max_value = 2.0
 step = 1.0
 value = 2.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="BubbleButton"]
+stream = ExtResource("3_rqf7a")
 
 [node name="Label" type="Label" parent="."]
 z_index = 4
