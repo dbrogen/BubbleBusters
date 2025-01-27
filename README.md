@@ -1,8 +1,8 @@
 # BubbleBusters: An Idle Clicker Game
 For Global Game Jam 2025
 
-Programmed by Daniel Brogen
-Art Assets by Ferris Milinazzo
+**Programmed by Daniel Brogen**  
+**Art Assets by Ferris Milinazzo**
 
 Pop endless bubbles and watch your bubble count pop in this addictive idle clicker game.
 
