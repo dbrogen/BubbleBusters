@@ -25,7 +25,7 @@ offset_bottom = 393.0
 text = "Credits:
 Assets: Ferris Milinazzo
 Programming: Daniel Brogen
-Game Design and Idea: The Bubble Busters"
+Game Design and Idea: The Bubble Buddies"
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 1

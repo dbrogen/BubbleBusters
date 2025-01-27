@@ -149,7 +149,7 @@ func _on_bubble_button_pressed() -> void:
 	$BubbleButton/AudioStreamPlayer2D.play();
 	bubbleCurrentHealth -= bubblesPerClick;
 	if(bubbleCurrentHealth <= 0):
-		numBubbles += 1;
+		numBubbles += bubblesPerClick;
 		bubbleCurrentHealth = bubbleMaxHealth;
 		$BubbleButton.icon = null;
 		var timer = get_tree().create_timer(.02);
