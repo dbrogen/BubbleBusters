@@ -10,6 +10,7 @@
 script = ExtResource("1_5k353")
 
 [node name="Background" parent="." instance=ExtResource("1_0amr4")]
+color = Color(0, 0.176471, 0.576471, 1)
 
 [node name="UI" parent="." instance=ExtResource("2_yre71")]
 offset_right = -7.0
