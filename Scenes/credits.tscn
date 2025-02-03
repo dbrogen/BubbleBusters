@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://ogom6s06fblp"]
+[gd_scene load_steps=3 format=3 uid="uid://ogom6s06fblp"]
 
 [ext_resource type="Script" path="res://Scripts/credits.gd" id="1_hlaje"]
+[ext_resource type="PackedScene" uid="uid://bdy6aqijg4o4d" path="res://Scenes/background.tscn" id="2_118pd"]
 
 [node name="credits" type="Control"]
 layout_mode = 3
@@ -11,18 +12,18 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hlaje")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Background" parent="." instance=ExtResource("2_118pd")]
+z_index = -1
 layout_mode = 0
-offset_left = -57.0
-offset_right = 1162.0
-offset_bottom = 676.0
-color = Color(0, 0.176471, 0.576471, 1)
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_right = 909.0
-offset_bottom = 393.0
+offset_left = 3.0
+offset_top = 2.0
+offset_right = 1147.0
+offset_bottom = 365.0
 text = "Credits:
+Art: Ferris Milinazzo, Alyssa Mazur, Brendan Moloney
 Assets: Ferris Milinazzo
 Programming: Daniel Brogen
 Game Design and Idea: The Bubble Buddies"

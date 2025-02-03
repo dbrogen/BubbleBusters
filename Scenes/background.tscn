@@ -1,10 +1,10 @@
-[gd_scene format=3 uid="uid://bdy6aqijg4o4d"]
+[gd_scene load_steps=2 format=3 uid="uid://bdy6aqijg4o4d"]
 
-[node name="Background" type="ColorRect"]
+[ext_resource type="Texture2D" uid="uid://r8jjhprww36c" path="res://Assets/bubbleBackgroud.png" id="1_r65id"]
+
+[node name="Background" type="TextureRect"]
 process_mode = 4
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0.176471, 0.576471, 1)
+offset_right = 64.0
+offset_bottom = 64.0
+scale = Vector2(18.0781, 10.1719)
+texture = ExtResource("1_r65id")

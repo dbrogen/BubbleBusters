@@ -1,38 +1,56 @@
-[gd_scene load_steps=6 format=3 uid="uid://cf8svwc8aj0fm"]
+[gd_scene load_steps=12 format=3 uid="uid://cf8svwc8aj0fm"]
 
 [ext_resource type="PackedScene" uid="uid://bdy6aqijg4o4d" path="res://Scenes/background.tscn" id="1_0amr4"]
 [ext_resource type="Script" path="res://Scripts/main_screen.gd" id="1_5k353"]
 [ext_resource type="PackedScene" uid="uid://cw2kqghoyrwu8" path="res://Scenes/UI.tscn" id="2_yre71"]
 [ext_resource type="AudioStream" uid="uid://biw4pq153fusn" path="res://Audio/Bobber Loop.wav" id="4_8e5jr"]
+[ext_resource type="Texture2D" uid="uid://cbqxcpqefvxex" path="res://Assets/ButtonBack.png" id="5_g4mwv"]
 [ext_resource type="Texture2D" uid="uid://bk1lrxndfrhe4" path="res://Assets/Framepiece.png" id="5_nfu0e"]
+[ext_resource type="Texture2D" uid="uid://5vw0suenm0u3" path="res://Assets/BubbleBackHover.png" id="6_s8aec"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_04hsl"]
+texture = ExtResource("6_s8aec")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a15lv"]
+texture = ExtResource("5_g4mwv")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0ct0f"]
+texture = ExtResource("6_s8aec")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v5vea"]
+texture = ExtResource("5_g4mwv")
 
 [node name="Main" type="Node"]
 script = ExtResource("1_5k353")
 
 [node name="Background" parent="." instance=ExtResource("1_0amr4")]
-color = Color(0, 0.176471, 0.576471, 1)
 
 [node name="UI" parent="." instance=ExtResource("2_yre71")]
 offset_right = -7.0
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_8e5jr")
-autoplay = true
 
 [node name="Credits" type="Button" parent="."]
 z_index = 4
-offset_left = 999.0
-offset_top = 560.0
-offset_right = 1134.0
-offset_bottom = 614.0
+offset_left = 191.0
+offset_top = 568.0
+offset_right = 326.0
+offset_bottom = 622.0
+theme_override_colors/font_color = Color(0, 0, 0.301961, 1)
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_04hsl")
+theme_override_styles/normal = SubResource("StyleBoxTexture_a15lv")
 text = "Credits"
 
 [node name="UpgradeKey" type="Button" parent="."]
 z_index = 4
-offset_left = 846.0
-offset_top = 560.0
-offset_right = 981.0
-offset_bottom = 614.0
+offset_left = 38.0
+offset_top = 568.0
+offset_right = 173.0
+offset_bottom = 622.0
+theme_override_colors/font_color = Color(0, 0, 0.301961, 1)
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_0ct0f")
+theme_override_styles/normal = SubResource("StyleBoxTexture_v5vea")
 text = "Upgrade Key"
 
 [node name="Bottom Frame" type="TextureRect" parent="."]
@@ -81,5 +99,23 @@ offset_bottom = -25.0
 rotation = 1.57079
 texture = ExtResource("5_nfu0e")
 
-[connection signal="pressed" from="Credits" to="." method="_on_button_pressed"]
+[node name="Achievement" type="Label" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -392.0
+offset_top = -121.0
+offset_right = -106.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="save" from="." to="UI" method="_on_main_save"]
+[connection signal="wandAchievement" from="UI" to="." method="_on_ui_wand_achievement"]
+[connection signal="pressed" from="Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="UpgradeKey" to="." method="_on_upgrade_key_pressed"]

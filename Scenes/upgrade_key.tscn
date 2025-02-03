@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dydiu71tpybt2"]
+[gd_scene load_steps=3 format=3 uid="uid://dydiu71tpybt2"]
 
 [ext_resource type="Script" path="res://Scripts/upgrade_key.gd" id="1_n1lvq"]
+[ext_resource type="PackedScene" uid="uid://bdy6aqijg4o4d" path="res://Scenes/background.tscn" id="2_woik2"]
 
 [node name="Upgrade Key" type="Control"]
 layout_mode = 3
@@ -11,12 +12,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_n1lvq")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Background" parent="." instance=ExtResource("2_woik2")]
+z_index = -1
 layout_mode = 0
-offset_left = -57.0
-offset_right = 1162.0
-offset_bottom = 676.0
-color = Color(0, 0.176471, 0.576471, 1)
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 1

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://kw87t5fsfeml"]
+[gd_scene load_steps=4 format=3 uid="uid://kw87t5fsfeml"]
 
 [ext_resource type="Script" path="res://Scripts/start_screen.gd" id="1_d03a6"]
 [ext_resource type="Texture2D" uid="uid://boj58b1uafg7i" path="res://Assets/bubbleBustersIntroScreen.png" id="2_xh4dj"]
+[ext_resource type="PackedScene" uid="uid://bdy6aqijg4o4d" path="res://Scenes/background.tscn" id="3_ow2g1"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -12,15 +13,30 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_d03a6")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Title" type="TextureRect" parent="."]
 layout_mode = 0
+offset_top = -16.0
 offset_right = 1154.0
-offset_bottom = 654.0
+offset_bottom = 638.0
 texture = ExtResource("2_xh4dj")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Background" parent="." instance=ExtResource("3_ow2g1")]
 z_index = -1
 layout_mode = 0
-offset_right = 1160.0
-offset_bottom = 656.0
-color = Color(0, 0.176471, 0.576471, 1)
+offset_top = -2.0
+offset_bottom = 62.0
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -102.0
+offset_top = -38.0
+offset_right = 102.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "(Press Space to Continue)"
+flat = true

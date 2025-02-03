@@ -22,23 +22,35 @@ var gardenCost: int = 750;
 var handCost: int = 50;
 var gangstersCost: int = 1500;
 
-var wandLevel: int = Global.wandLevel;
-var machineLevel: int = Global.machineLevel;
-var babyLevel: int = Global.babyLevel;
-var factoryLevel: int = Global.factoryLevel;
-var gardenLevel: int = Global.gardenLevel;
-var handLevel: int = Global.handLevel;
-var gangstersLevel: int = Global.gangstersLevel;
+var wandLevel: int = 0;
+var machineLevel: int = 0;
+var babyLevel: int = 0;
+var factoryLevel: int = 0;
+var gardenLevel: int = 0;
+var handLevel: int = 0;
+var gangstersLevel: int = 0;
+
+signal wandAchievement;
+signal machineAchievement;
+signal babyAchievement;
+signal factoryAchievement;
+signal gardenAchievement;
+signal handAchievement;
+signal gangstersAchievement;
+signal bubbleBusterAchievement;
 
 ## On scene load set the main text for the scene label and button
 func _ready() -> void:
+	
 	numBubbles = Global.bubblesPopped;
 	bubbleCurrentHealth = Global.bubbleCurrentHealth;
+	bubbleMaxHealth = Global.bubbleMaxHealth
 	
 	$BubbleButton.text = "";
-	$Label.text = "Bubbles Popped: " + str(numBubbles);
+	$BubbleCount.text = "Bubbles Popped: " + str(numBubbles);
 	$BubbleButton/HealthBar.max_value = bubbleMaxHealth;
 	$BubbleButton/HealthBar.value = bubbleCurrentHealth;
+	$Timer.wait_time = Global.timeRemaining;
 	
 	wandLevel = Global.wandLevel;
 	machineLevel = Global.machineLevel;
@@ -68,77 +80,58 @@ func _ready() -> void:
 	if(handLevel == 0):
 		$Upgrades/HandsButton.text = "(3) Extra Hands";
 	else:
-		$Upgrades/WandButton.text = "(3) Extra Hands (Level " + str(handLevel) + ")";
+		$Upgrades/HandsButton.text = "(3) Extra Hands (Level " + str(handLevel) + ")";
 		
 	if(babyLevel == 0):
 		$Upgrades/BabyButton.text = "(5) Bubble Blowing Babies";
 	else:
-		$Upgrades/WandButton.text = "(5) Bubble Blowing Babies (Level " + str(babyLevel) + ")";
+		$Upgrades/BabyButton.text = "(5) Bubble Blowing Babies (Level " + str(babyLevel) + ")";
 		
 	if(factoryLevel == 0):
 		$Upgrades/FactoryButton.text = "(4) Bubble Factory";
 	else:
-		$Upgrades/WandButton.text = "(4) Bubble Factory (Level " + str(factoryLevel) + ")";
+		$Upgrades/FactoryButton.text = "(4) Bubble Factory (Level " + str(factoryLevel) + ")";
 		
 	if(gardenLevel == 0):
 		$Upgrades/GardenButton.text = "(6) Bubble Garden";
 	else:
-		$Upgrades/WandButton.text = "(6) Bubble Garden (Level " + str(gardenLevel) + ")";
+		$Upgrades/GardenButton.text = "(6) Bubble Garden (Level " + str(gardenLevel) + ")";
 		
 	if(gangstersLevel == 0):
 		$Upgrades/GangsterButton.text = "(7) Bubble Busters";
 	else:
-		$Upgrades/WandButton.text = "(7) Bubble Busters (Level " + str(gangstersLevel) + ")";
+		$Upgrades/GangsterButton.text = "(7) Bubble Busters (Level " + str(gangstersLevel) + ")";
 
-func _process(_delta: float) -> void:	
-	Global.bubbleMaxHealth = bubbleMaxHealth;
-	Global.bubbleCurrentHealth = bubbleCurrentHealth;
-	
-	Global.bubblesPopped = numBubbles;
-	
-	Global.wandLevel = wandLevel;
-	Global.machineLevel = machineLevel;
-	Global.babyLevel = babyLevel;
-	Global.factoryLevel = factoryLevel;
-	Global.gardenLevel = gardenLevel;
-	Global.handLevel = handLevel;
-	Global.gangstersLevel = gangstersLevel;
-
-	Global.bubblesPerClick = bubblesPerClick;
-	Global.machineUnlocked = machineUnlocked;
-	Global.babiesUnlocked = babiesUnlocked;
-	Global.gardenUnlocked = gardenUnlocked;
-	Global.factoryUnlocked = factoryUnlocked;
-	Global.gangstersUnlocked = gangstersUnlocked;
-	
-	$Label.text = "Bubbles Popped: " + str(round(numBubbles));
+func _process(_delta: float) -> void:
+	$BubbleCount.text = "Bubbles Popped: " + str(round(numBubbles));
 	$BubbleButton/HealthBar.value = bubbleCurrentHealth;
+	$Timer/TimeRemaining.text = str(round($Timer.time_left)) + " Seconds";
 	
 	if(machineUnlocked):
 		if(factoryUnlocked):
 			if(babiesUnlocked):
 				if(gardenUnlocked):
 					if(gangstersUnlocked):
-						numBubbles += 0.5 * (Global.machineLevel + Global.factoryLevel + 
-						Global.babyLevel + Global.gardenLevel + Global. gangstersLevel) * _delta;
+						numBubbles += 0.5 * (machineLevel + factoryLevel + 
+						babyLevel + gardenLevel + gangstersLevel) * _delta;
 					else:
-						numBubbles += 0.5 + (Global.machineLevel + Global.factoryLevel + 
-						Global.babyLevel + Global.gardenLevel) * _delta;
+						numBubbles += 0.5 + (machineLevel + factoryLevel + 
+						babyLevel + gardenLevel) * _delta;
 				else:
-					numBubbles += 0.5 * (Global.machineLevel + Global.factoryLevel +
-					Global.babyLevel) * _delta;
+					numBubbles += 0.5 * (machineLevel + factoryLevel +
+					babyLevel) * _delta;
 		else:
-			numBubbles += 0.5 * (Global.machineLevel + Global.factoryLevel) * _delta;
-		numBubbles += 0.5 * Global.machineLevel * _delta;
+			numBubbles += 0.5 * (machineLevel + factoryLevel) * _delta;
+		numBubbles += 0.5 * machineLevel * _delta;
 		
-	if(Global.machineLevel >= 5):
+	if(machineLevel >= 5):
 		$Upgrades/BabyButton.visible = true;
 		$Upgrades/FactoryButton.visible = true;
-	if(Global.factoryLevel >= 5):
+	if(factoryLevel >= 5):
 		$Upgrades/GardenButton.visible = true;
-	if(Global.gardenLevel >= 5):
+	if(gardenLevel >= 5):
 		$Upgrades/GangsterButton.visible = true;
-	if(Global.wandLevel >= 5):
+	if(wandLevel >= 5):
 		$Upgrades/HandsButton.visible = true;
 
 func _input(event: InputEvent) -> void:
@@ -170,6 +163,8 @@ func _on_wand_button_pressed() -> void:
 		@warning_ignore("narrowing_conversion")
 		wandCost *= 1.5;
 		$Upgrades/WandButton.text = "(1) Bubble Wand (Level " + str(wandLevel) + ")";
+		if(wandLevel == 5):
+			wandAchievement.emit();
 
 func _on_wand_button_mouse_entered() -> void:
 	$Upgrades/WandButton.text = "Cost to Upgrade: " + str(wandCost) + " Bubbles";
@@ -182,6 +177,7 @@ func _on_wand_button_mouse_exited() -> void:
 		
 func _on_hands_button_pressed() -> void:
 	if(numBubbles >= handCost):
+		handAchievement.emit();
 		numBubbles -= handCost;
 		bubblesPerClick += 1;
 		handLevel += 1;
@@ -191,6 +187,7 @@ func _on_hands_button_pressed() -> void:
 
 func _on_machine_button_pressed() -> void:
 	if(!machineUnlocked and numBubbles >= machineCost):
+		machineAchievement.emit();
 		numBubbles -= machineCost;
 		print("Machine Unlocked")
 		machineUnlocked = true;
@@ -213,6 +210,7 @@ func _on_machine_button_mouse_exited() -> void:
 
 func _on_factory_button_pressed() -> void:
 	if(!factoryUnlocked and numBubbles >= factoryCost):
+		factoryAchievement.emit();
 		numBubbles -= factoryCost;
 		print("Factory Unlocked")
 		factoryUnlocked = true;
@@ -226,6 +224,7 @@ func _on_factory_button_pressed() -> void:
 
 func _on_baby_button_pressed() -> void:
 	if(!babiesUnlocked and numBubbles >= babyCost):
+		babyAchievement.emit();
 		numBubbles -= babyCost;
 		print("Babies Unlocked")
 		babiesUnlocked = true;
@@ -239,6 +238,7 @@ func _on_baby_button_pressed() -> void:
 		
 func _on_garden_button_pressed() -> void:
 	if(!gardenUnlocked and numBubbles >= gardenCost):
+		gardenAchievement.emit();
 		numBubbles -= gardenCost;
 		print("Garden Unlocked")
 		gardenUnlocked = true;
@@ -252,16 +252,17 @@ func _on_garden_button_pressed() -> void:
 
 func _on_gangster_button_pressed() -> void:
 	if(!gangstersUnlocked and numBubbles >= gangstersCost):
+		gangstersAchievement.emit();
 		numBubbles -= gangstersCost;
 		print("Gangsters Unlocked")
 		gangstersUnlocked = true;
 		gangstersLevel += 1;
 		@warning_ignore("narrowing_conversion")
 		gangstersCost *= 1.5;
-		$Upgrades/GangsterButton.text = "(7) Bubble Gangsters (Level " + str(gangstersLevel) + ")";
+		$Upgrades/GangsterButton.text = "(7) Bubble Busters (Level " + str(gangstersLevel) + ")";
 	else:
 		gangstersLevel += 1;
-		$Upgrades/GangsterButton.text = "(7) Bubble Gangsters (Level " + str(gangstersLevel) + ")";
+		$Upgrades/GangsterButton.text = "(7) Bubble Busters (Level " + str(gangstersLevel) + ")";
 
 func _on_hands_button_mouse_entered() -> void:
 	$Upgrades/HandsButton.text = "Cost to Upgrade: " + str(handCost) + " Bubbles";
@@ -307,3 +308,28 @@ func _on_gangster_button_mouse_exited() -> void:
 		$Upgrades/GangsterButton.text = "(7) Bubble Busters (Level " + str(gangstersLevel) + ")";
 	else:
 		$Upgrades/GangsterButton.text = "(7) Bubble Busters";
+
+func save_data():
+	Global.bubbleMaxHealth = bubbleMaxHealth;
+	Global.bubbleCurrentHealth = bubbleCurrentHealth;
+	Global.timeRemaining = $Timer.time_left;
+	
+	Global.bubblesPopped = numBubbles;
+	
+	Global.wandLevel = wandLevel;
+	Global.machineLevel = machineLevel;
+	Global.babyLevel = babyLevel;
+	Global.factoryLevel = factoryLevel;
+	Global.gardenLevel = gardenLevel;
+	Global.handLevel = handLevel;
+	Global.gangstersLevel = gangstersLevel;
+
+	Global.bubblesPerClick = bubblesPerClick;
+	Global.machineUnlocked = machineUnlocked;
+	Global.babiesUnlocked = babiesUnlocked;
+	Global.gardenUnlocked = gardenUnlocked;
+	Global.factoryUnlocked = factoryUnlocked;
+	Global.gangstersUnlocked = gangstersUnlocked;
+
+func _on_main_save() -> void:
+	save_data();

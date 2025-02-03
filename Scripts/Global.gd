@@ -20,3 +20,5 @@ extends Node
 @export var gardenUnlocked: bool = false;
 @export var factoryUnlocked: bool = false;
 @export var gangstersUnlocked: bool = false;
+
+@export var timeRemaining: float = 120;
