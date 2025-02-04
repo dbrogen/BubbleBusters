@@ -30,15 +30,6 @@ var gardenLevel: int = 0;
 var handLevel: int = 0;
 var gangstersLevel: int = 0;
 
-signal wandAchievement;
-signal machineAchievement;
-signal babyAchievement;
-signal factoryAchievement;
-signal gardenAchievement;
-signal handAchievement;
-signal gangstersAchievement;
-signal bubbleBusterAchievement;
-
 ## On scene load set the main text for the scene label and button
 func _ready() -> void:
 	
@@ -167,7 +158,11 @@ func _on_wand_button_pressed() -> void:
 		wandCost *= 1.5;
 		$Upgrades/WandButton.text = "(1) Bubble Wand (Level " + str(wandLevel) + ")";
 		if(wandLevel == 5):
-			wandAchievement.emit();
+			$Achievement.visible = true;
+			$Achievement.text = "ACHIEVEMENT UNLOCKED: Student of the Wand \t";
+			var timer = get_tree().create_timer(3);
+			await timer.timeout;
+			$Achievement.visible = false;
 
 func _on_wand_button_mouse_entered() -> void:
 	$Upgrades/WandButton.text = "Cost to Upgrade: " + str(wandCost) + " Bubbles";
@@ -180,7 +175,6 @@ func _on_wand_button_mouse_exited() -> void:
 		
 func _on_hands_button_pressed() -> void:
 	if(numBubbles >= handCost):
-		handAchievement.emit();
 		numBubbles -= handCost;
 		bubblesPerClick += 1;
 		handLevel += 1;
@@ -190,7 +184,6 @@ func _on_hands_button_pressed() -> void:
 
 func _on_machine_button_pressed() -> void:
 	if(!machineUnlocked and numBubbles >= machineCost):
-		machineAchievement.emit();
 		numBubbles -= machineCost;
 		print("Machine Unlocked")
 		machineUnlocked = true;
@@ -213,7 +206,6 @@ func _on_machine_button_mouse_exited() -> void:
 
 func _on_factory_button_pressed() -> void:
 	if(!factoryUnlocked and numBubbles >= factoryCost):
-		factoryAchievement.emit();
 		numBubbles -= factoryCost;
 		print("Factory Unlocked")
 		factoryUnlocked = true;
@@ -227,7 +219,6 @@ func _on_factory_button_pressed() -> void:
 
 func _on_baby_button_pressed() -> void:
 	if(!babiesUnlocked and numBubbles >= babyCost):
-		babyAchievement.emit();
 		numBubbles -= babyCost;
 		print("Babies Unlocked")
 		babiesUnlocked = true;
@@ -241,7 +232,6 @@ func _on_baby_button_pressed() -> void:
 		
 func _on_garden_button_pressed() -> void:
 	if(!gardenUnlocked and numBubbles >= gardenCost):
-		gardenAchievement.emit();
 		numBubbles -= gardenCost;
 		print("Garden Unlocked")
 		gardenUnlocked = true;
@@ -255,7 +245,6 @@ func _on_garden_button_pressed() -> void:
 
 func _on_gangster_button_pressed() -> void:
 	if(!gangstersUnlocked and numBubbles >= gangstersCost):
-		gangstersAchievement.emit();
 		numBubbles -= gangstersCost;
 		print("Gangsters Unlocked")
 		gangstersUnlocked = true;
