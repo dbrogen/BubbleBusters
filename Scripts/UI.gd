@@ -46,6 +46,9 @@ func _ready() -> void:
 	bubbleCurrentHealth = Global.bubbleCurrentHealth;
 	bubbleMaxHealth = Global.bubbleMaxHealth
 	
+	$Timer.wait_time = Global.timeRemaining;
+	$Timer.start();
+	
 	$BubbleButton.text = "";
 	$BubbleCount.text = "Bubbles Popped: " + str(numBubbles);
 	$BubbleButton/HealthBar.max_value = bubbleMaxHealth;
@@ -103,6 +106,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	$BubbleCount.text = "Bubbles Popped: " + str(round(numBubbles));
+	$Timer/TimeLeft.text = "Time Left: " + str(round($Timer.time_left));
 	$BubbleButton/HealthBar.max_value = bubbleMaxHealth;
 	$BubbleButton/HealthBar.value = bubbleCurrentHealth;
 	
@@ -311,6 +315,8 @@ func _on_gangster_button_mouse_exited() -> void:
 func save_data():
 	Global.bubbleMaxHealth = bubbleMaxHealth;
 	Global.bubbleCurrentHealth = bubbleCurrentHealth;
+	
+	Global.timeRemaining = $Timer.time_left;
 	
 	Global.bubblesPopped = numBubbles;
 	

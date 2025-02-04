@@ -36,10 +36,10 @@ stream = ExtResource("4_8e5jr")
 
 [node name="Credits" type="Button" parent="."]
 z_index = 4
-offset_left = 191.0
-offset_top = 568.0
-offset_right = 326.0
-offset_bottom = 622.0
+offset_left = 335.0
+offset_top = 552.0
+offset_right = 470.0
+offset_bottom = 606.0
 theme_override_colors/font_disabled_color = Color(0, 0, 0.301961, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0.301961, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0.301961, 1)
@@ -53,10 +53,10 @@ text = "Credits"
 
 [node name="UpgradeKey" type="Button" parent="."]
 z_index = 4
-offset_left = 38.0
-offset_top = 568.0
-offset_right = 173.0
-offset_bottom = 622.0
+offset_left = 182.0
+offset_top = 552.0
+offset_right = 317.0
+offset_bottom = 606.0
 theme_override_colors/font_disabled_color = Color(0, 0, 0.301961, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0.301961, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0.301961, 1)
@@ -120,28 +120,17 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -392.0
-offset_top = -121.0
-offset_right = -106.0
-offset_bottom = -19.0
+offset_left = -240.0
+offset_top = -625.0
+offset_right = 46.0
+offset_bottom = -523.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(1, 1, 0, 1)
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 10.0
-
-[node name="TimeLeft" type="Label" parent="Timer"]
-offset_left = 31.0
-offset_top = 94.0
-offset_right = 258.0
-offset_bottom = 150.0
-text = "Time Left: X Seconds"
-
 [connection signal="save" from="." to="UI" method="_on_main_save"]
 [connection signal="wandAchievement" from="UI" to="." method="_on_ui_wand_achievement"]
 [connection signal="pressed" from="Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="UpgradeKey" to="." method="_on_upgrade_key_pressed"]
-[connection signal="timeout" from="Timer" to="UI" method="_on_timer_timeout"]
