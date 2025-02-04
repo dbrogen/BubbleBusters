@@ -46,7 +46,7 @@ texture = ExtResource("4_6r1li")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jiq75"]
 texture = ExtResource("4_6r1li")
 texture_margin_left = 48.0
-texture_margin_right = 48.0
+texture_margin_right = 65.0
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
 
@@ -303,17 +303,6 @@ shortcut = SubResource("Shortcut_wp7lm")
 text = "Gangsters"
 icon = ExtResource("5_l75be")
 autowrap_mode = 3
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 120.0
-autostart = true
-
-[node name="TimeRemaining" type="Label" parent="Timer"]
-offset_left = 21.0
-offset_top = 82.0
-offset_right = 188.0
-offset_bottom = 139.0
-text = "X Seconds"
 
 [connection signal="mouse_entered" from="BubbleButton" to="." method="_on_bubble_button_mouse_entered"]
 [connection signal="mouse_exited" from="BubbleButton" to="." method="_on_bubble_button_mouse_exited"]

@@ -50,7 +50,6 @@ func _ready() -> void:
 	$BubbleCount.text = "Bubbles Popped: " + str(numBubbles);
 	$BubbleButton/HealthBar.max_value = bubbleMaxHealth;
 	$BubbleButton/HealthBar.value = bubbleCurrentHealth;
-	$Timer.wait_time = Global.timeRemaining;
 	
 	wandLevel = Global.wandLevel;
 	machineLevel = Global.machineLevel;
@@ -104,8 +103,8 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	$BubbleCount.text = "Bubbles Popped: " + str(round(numBubbles));
+	$BubbleButton/HealthBar.max_value = bubbleMaxHealth;
 	$BubbleButton/HealthBar.value = bubbleCurrentHealth;
-	$Timer/TimeRemaining.text = str(round($Timer.time_left)) + " Seconds";
 	
 	if(machineUnlocked):
 		if(factoryUnlocked):
@@ -312,7 +311,6 @@ func _on_gangster_button_mouse_exited() -> void:
 func save_data():
 	Global.bubbleMaxHealth = bubbleMaxHealth;
 	Global.bubbleCurrentHealth = bubbleCurrentHealth;
-	Global.timeRemaining = $Timer.time_left;
 	
 	Global.bubblesPopped = numBubbles;
 	
@@ -333,3 +331,6 @@ func save_data():
 
 func _on_main_save() -> void:
 	save_data();
+
+func _on_timer_timeout() -> void:
+	bubbleMaxHealth += 1;
