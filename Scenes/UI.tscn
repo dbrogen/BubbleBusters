@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cw2kqghoyrwu8"]
+[gd_scene load_steps=25 format=3 uid="uid://cw2kqghoyrwu8"]
 
 [ext_resource type="Script" path="res://Scripts/UI.gd" id="1_0almg"]
 [ext_resource type="Texture2D" uid="uid://dmy18ut0iljgj" path="res://Assets/MainBubble.png" id="2_gw5qt"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bwiirefp0k8o4" path="res://Assets/BubbleWands/bubblewand_orange.png" id="5_l75be"]
 [ext_resource type="Texture2D" uid="uid://ow13xqocw72" path="res://Assets/Bubble Factory.png" id="6_mhwxk"]
 [ext_resource type="Texture2D" uid="uid://cwwuqbdpe1m2p" path="res://Assets/Bubble Garden.png" id="8_a5tc5"]
+[ext_resource type="Texture2D" uid="uid://bjvr4invc0uvr" path="res://Assets/wood_floor.jpg" id="13_d1bha"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f23hc"]
 
@@ -50,61 +51,8 @@ texture_margin_right = 65.0
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
 
-[sub_resource type="InputEventKey" id="InputEventKey_rfpdb"]
-device = -1
-keycode = 49
-unicode = 49
-
-[sub_resource type="Shortcut" id="Shortcut_m7ph0"]
-events = [SubResource("InputEventKey_rfpdb")]
-
-[sub_resource type="InputEventKey" id="InputEventKey_6opj6"]
-device = -1
-keycode = 50
-unicode = 50
-
-[sub_resource type="Shortcut" id="Shortcut_h0ag5"]
-events = [SubResource("InputEventKey_6opj6")]
-
-[sub_resource type="InputEventKey" id="InputEventKey_xj3q1"]
-device = -1
-keycode = 51
-unicode = 51
-
-[sub_resource type="Shortcut" id="Shortcut_gmfsy"]
-events = [SubResource("InputEventKey_xj3q1")]
-
-[sub_resource type="InputEventKey" id="InputEventKey_oee5h"]
-device = -1
-keycode = 52
-unicode = 52
-
-[sub_resource type="Shortcut" id="Shortcut_k8pqa"]
-events = [SubResource("InputEventKey_oee5h")]
-
-[sub_resource type="InputEventKey" id="InputEventKey_aahwh"]
-device = -1
-keycode = 53
-unicode = 53
-
-[sub_resource type="Shortcut" id="Shortcut_hjryp"]
-events = [SubResource("InputEventKey_aahwh")]
-
-[sub_resource type="InputEventKey" id="InputEventKey_dabkk"]
-device = -1
-keycode = 54
-unicode = 54
-
-[sub_resource type="Shortcut" id="Shortcut_6ifpk"]
-events = [SubResource("InputEventKey_dabkk")]
-
-[sub_resource type="InputEventKey" id="InputEventKey_nsng1"]
-device = -1
-keycode = 55
-unicode = 55
-
-[sub_resource type="Shortcut" id="Shortcut_wp7lm"]
-events = [SubResource("InputEventKey_nsng1")]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mcny1"]
+texture = ExtResource("13_d1bha")
 
 [node name="UI" type="Control"]
 z_index = 4
@@ -201,7 +149,6 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_p80kp")
 theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_k46kd")
 theme_override_styles/hover = SubResource("StyleBoxTexture_uy4nw")
 theme_override_styles/normal = SubResource("StyleBoxTexture_jiq75")
-shortcut = SubResource("Shortcut_m7ph0")
 text = "More Bubbles Per Click"
 icon = ExtResource("3_osnui")
 autowrap_mode = 3
@@ -219,12 +166,12 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_p80kp")
 theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_k46kd")
 theme_override_styles/hover = SubResource("StyleBoxTexture_uy4nw")
 theme_override_styles/normal = SubResource("StyleBoxTexture_jiq75")
-shortcut = SubResource("Shortcut_h0ag5")
 text = "Passive Bubs"
 icon = ExtResource("4_h7fcg")
 autowrap_mode = 3
 
 [node name="HandsButton" type="Button" parent="Upgrades"]
+visible = false
 custom_minimum_size = Vector2(0, 72)
 layout_mode = 2
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0.301961, 1)
@@ -235,12 +182,12 @@ theme_override_colors/font_color = Color(0, 0, 0.301961, 1)
 theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_k46kd")
 theme_override_styles/hover = SubResource("StyleBoxTexture_uy4nw")
 theme_override_styles/normal = SubResource("StyleBoxTexture_jiq75")
-shortcut = SubResource("Shortcut_gmfsy")
 text = "Extra Hands"
 icon = ExtResource("5_8webj")
 autowrap_mode = 3
 
 [node name="FactoryButton" type="Button" parent="Upgrades"]
+visible = false
 custom_minimum_size = Vector2(0, 72)
 layout_mode = 2
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0.301961, 1)
@@ -251,12 +198,12 @@ theme_override_colors/font_color = Color(0, 0, 0.301961, 1)
 theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_k46kd")
 theme_override_styles/hover = SubResource("StyleBoxTexture_uy4nw")
 theme_override_styles/normal = SubResource("StyleBoxTexture_jiq75")
-shortcut = SubResource("Shortcut_k8pqa")
 text = "Factory"
 icon = ExtResource("6_mhwxk")
 autowrap_mode = 3
 
 [node name="BabyButton" type="Button" parent="Upgrades"]
+visible = false
 custom_minimum_size = Vector2(0, 72)
 layout_mode = 2
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0.301961, 1)
@@ -267,12 +214,12 @@ theme_override_colors/font_color = Color(0, 0, 0.301961, 1)
 theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_k46kd")
 theme_override_styles/hover = SubResource("StyleBoxTexture_uy4nw")
 theme_override_styles/normal = SubResource("StyleBoxTexture_jiq75")
-shortcut = SubResource("Shortcut_hjryp")
 text = "Babies"
 icon = ExtResource("5_eya61")
 autowrap_mode = 3
 
 [node name="GardenButton" type="Button" parent="Upgrades"]
+visible = false
 custom_minimum_size = Vector2(0, 72)
 layout_mode = 2
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0.301961, 1)
@@ -283,12 +230,12 @@ theme_override_colors/font_color = Color(0, 0, 0.301961, 1)
 theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_k46kd")
 theme_override_styles/hover = SubResource("StyleBoxTexture_uy4nw")
 theme_override_styles/normal = SubResource("StyleBoxTexture_jiq75")
-shortcut = SubResource("Shortcut_6ifpk")
 text = "Garden"
 icon = ExtResource("8_a5tc5")
 autowrap_mode = 3
 
 [node name="GangsterButton" type="Button" parent="Upgrades"]
+visible = false
 custom_minimum_size = Vector2(0, 72)
 layout_mode = 2
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0.301961, 1)
@@ -299,7 +246,6 @@ theme_override_colors/font_color = Color(0, 0, 0.301961, 1)
 theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_k46kd")
 theme_override_styles/hover = SubResource("StyleBoxTexture_uy4nw")
 theme_override_styles/normal = SubResource("StyleBoxTexture_jiq75")
-shortcut = SubResource("Shortcut_wp7lm")
 text = "Gangsters"
 icon = ExtResource("5_l75be")
 autowrap_mode = 3
@@ -316,6 +262,7 @@ text = "Time Left: X Seconds"
 metadata/_edit_use_anchors_ = true
 
 [node name="Achievement" type="Label" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -329,6 +276,7 @@ offset_bottom = -523.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxTexture_mcny1")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -356,3 +304,4 @@ vertical_alignment = 1
 [connection signal="mouse_entered" from="Upgrades/GangsterButton" to="." method="_on_gangster_button_mouse_entered"]
 [connection signal="mouse_exited" from="Upgrades/GangsterButton" to="." method="_on_gangster_button_mouse_exited"]
 [connection signal="pressed" from="Upgrades/GangsterButton" to="." method="_on_gangster_button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

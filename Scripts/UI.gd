@@ -13,6 +13,9 @@ var babiesUnlocked: bool = false;
 var gardenUnlocked: bool = false;
 var factoryUnlocked: bool = false;
 var gangstersUnlocked: bool = false;
+var bubbleBusterAchievementUnlocked: bool = false;
+var superBubbleBusterAchievementUnlocked: bool = false;
+var ultimateBubbleBusterAchievementUnlocked: bool = false;
 
 var wandCost: int = 20;
 var machineCost: int = 50;
@@ -119,18 +122,44 @@ func _process(_delta: float) -> void:
 		numBubbles += 0.5 * machineLevel * _delta;
 		
 	if(machineLevel >= 5):
-		$Upgrades/BabyButton.visible = true;
 		$Upgrades/FactoryButton.visible = true;
 	if(factoryLevel >= 5):
+		$Upgrades/BabyButton.visible = true;
+	if(babyLevel >= 5):
 		$Upgrades/GardenButton.visible = true;
 	if(gardenLevel >= 5):
 		$Upgrades/GangsterButton.visible = true;
 	if(wandLevel >= 5):
-		$Upgrades/HandsButton.visible = true;
+		$Upgrades/HandsButton.visible = true;	
+	
+	if(babiesUnlocked and gardenUnlocked and factoryUnlocked and machineUnlocked and gangstersUnlocked):
+		if(wandLevel >= 10 and machineLevel >= 10 and handLevel >= 10 and babyLevel >= 10 and 
+		factoryLevel >= 10 and gardenLevel >= 10 and gangstersLevel >= 10 and !ultimateBubbleBusterAchievementUnlocked):
+			ultimateBubbleBusterAchievementUnlocked = true;
+			$Achievement.visible = true;
+			$Achievement.text = "ACHIEVEMENT UNLOCKED: The Ultimate Bubble Buster \t";
+			var timer = get_tree().create_timer(3);
+			await timer.timeout;
+			$Achievement.visible = false;
+		elif(wandLevel >= 5 and machineLevel >= 5 and handLevel >= 5 and babyLevel >= 5 and 
+		factoryLevel >= 5 and gardenLevel >= 5 and gangstersLevel >= 5 and !superBubbleBusterAchievementUnlocked):
+			superBubbleBusterAchievementUnlocked = true;
+			$Achievement.visible = true;
+			$Achievement.text = "ACHIEVEMENT UNLOCKED: Super Bubble Buster \t";
+			var timer = get_tree().create_timer(3);
+			await timer.timeout;
+			$Achievement.visible = false;
+		elif(!bubbleBusterAchievementUnlocked):
+			bubbleBusterAchievementUnlocked = true;
+			$Achievement.visible = true;
+			$Achievement.text = "ACHIEVEMENT UNLOCKED: Bubble Buster \t";
+			var timer = get_tree().create_timer(3);
+			await timer.timeout;
+			$Achievement.visible = false;
 
 func _input(event: InputEvent) -> void:
 	if(event.is_action_pressed("addBubbles")):
-		numBubbles += 10000;
+		numBubbles += 1000000;
 
 func _on_bubble_button_pressed() -> void:
 	$BubbleButton/AudioStreamPlayer2D.play();
@@ -168,7 +197,7 @@ func _on_wand_button_mouse_entered() -> void:
 	$Upgrades/WandButton.text = "Cost to Upgrade: " + str(wandCost) + " Bubbles";
 
 func _on_wand_button_mouse_exited() -> void:
-	if(bubblesPerClick > 1):
+	if(wandLevel >= 1):
 		$Upgrades/WandButton.text = "(1) Bubble Wand (Level " + str(wandLevel) + ")";
 	else:
 		$Upgrades/WandButton.text = "(1) Bubble Wand";
@@ -181,6 +210,12 @@ func _on_hands_button_pressed() -> void:
 		@warning_ignore("narrowing_conversion")
 		handCost *= 1.5;
 		$Upgrades/HandsButton.text = "(3) Extra Hands (Level " + str(handLevel) + ")";
+	if(handLevel == 5):
+			$Achievement.visible = true;
+			$Achievement.text = "ACHIEVEMENT UNLOCKED: Popping Hands \t";
+			var timer = get_tree().create_timer(3);
+			await timer.timeout;
+			$Achievement.visible = false;
 
 func _on_machine_button_pressed() -> void:
 	if(!machineUnlocked and numBubbles >= machineCost):
@@ -191,9 +226,16 @@ func _on_machine_button_pressed() -> void:
 		@warning_ignore("narrowing_conversion")
 		machineCost *= 1.5;
 		$Upgrades/MachineButton.text = "(2) Bubble Machine (Level " + str(machineLevel) + ")";
-	else:
+	elif(numBubbles >= machineCost):
+		machineCost *+ 1.5;
 		machineLevel += 1;
 		$Upgrades/MachineButton.text = "(2) Bubble Machine (Level " + str(machineLevel) + ")";
+	if(machineLevel == 5):
+			$Achievement.visible = true;
+			$Achievement.text = "ACHIEVEMENT UNLOCKED: Bubble Producer \t";
+			var timer = get_tree().create_timer(3);
+			await timer.timeout;
+			$Achievement.visible = false;
 
 func _on_machine_button_mouse_entered() -> void:
 	$Upgrades/MachineButton.text = "Cost to Upgrade: " + str(machineCost) + " Bubbles";
@@ -213,9 +255,16 @@ func _on_factory_button_pressed() -> void:
 		@warning_ignore("narrowing_conversion")
 		factoryCost *= 1.5;
 		$Upgrades/FactoryButton.text = "(4) Bubble Factory (Level " + str(factoryLevel) + ")";
-	else:
+	elif(numBubbles >= factoryCost):
+		factoryCost *= 1.5;
 		factoryLevel += 1;
 		$Upgrades/FactoryButton.text = "(4) Bubble Factory (Level " + str(factoryLevel) + ")";
+	if(factoryLevel == 5):
+			$Achievement.visible = true;
+			$Achievement.text = "ACHIEVEMENT UNLOCKED: Bubble Factorial! \t";
+			var timer = get_tree().create_timer(3);
+			await timer.timeout;
+			$Achievement.visible = false;
 
 func _on_baby_button_pressed() -> void:
 	if(!babiesUnlocked and numBubbles >= babyCost):
@@ -226,9 +275,16 @@ func _on_baby_button_pressed() -> void:
 		@warning_ignore("narrowing_conversion")
 		babyCost *= 1.5;
 		$Upgrades/BabyButton.text = "(5) Bubble Babies (Level " + str(babyLevel) + ")";
-	else:
+	elif(numBubbles >= babyCost):
+		babyCost *= 1.5;
 		babyLevel += 1;
 		$Upgrades/BabyButton.text = "(5) Bubble Babies (Level " + str(babyLevel) + ")";
+	if(babyLevel == 5):
+			$Achievement.visible = true;
+			$Achievement.text = "ACHIEVEMENT UNLOCKED: Baby's First Bubble \t";
+			var timer = get_tree().create_timer(3);
+			await timer.timeout;
+			$Achievement.visible = false;
 		
 func _on_garden_button_pressed() -> void:
 	if(!gardenUnlocked and numBubbles >= gardenCost):
@@ -239,9 +295,16 @@ func _on_garden_button_pressed() -> void:
 		@warning_ignore("narrowing_conversion")
 		gardenCost *= 1.5;
 		$Upgrades/GardenButton.text = "(6) Bubble Garden (Level " + str(gardenLevel) + ")";
-	else:
+	elif(numBubbles >= gardenCost):
 		gardenLevel += 1;
+		gardenCost *= 1.5;
 		$Upgrades/GardenButton.text = "(6) Bubble Garden (Level " + str(gardenLevel) + ")";
+	if(gardenLevel == 5):
+			$Achievement.visible = true;
+			$Achievement.text = "ACHIEVEMENT UNLOCKED: Bubble Botanist \t";
+			var timer = get_tree().create_timer(3);
+			await timer.timeout;
+			$Achievement.visible = false;
 
 func _on_gangster_button_pressed() -> void:
 	if(!gangstersUnlocked and numBubbles >= gangstersCost):
@@ -252,15 +315,22 @@ func _on_gangster_button_pressed() -> void:
 		@warning_ignore("narrowing_conversion")
 		gangstersCost *= 1.5;
 		$Upgrades/GangsterButton.text = "(7) Bubble Busters (Level " + str(gangstersLevel) + ")";
-	else:
+	elif(numBubbles >= gangstersCost):
 		gangstersLevel += 1;
+		gangstersCost *= 1.5;
 		$Upgrades/GangsterButton.text = "(7) Bubble Busters (Level " + str(gangstersLevel) + ")";
+	if(gangstersLevel == 5):
+			$Achievement.visible = true;
+			$Achievement.text = "ACHIEVEMENT UNLOCKED: Bubble Destroyer \t";
+			var timer = get_tree().create_timer(3);
+			await timer.timeout;
+			$Achievement.visible = false;
 
 func _on_hands_button_mouse_entered() -> void:
 	$Upgrades/HandsButton.text = "Cost to Upgrade: " + str(handCost) + " Bubbles";
 
 func _on_hands_button_mouse_exited() -> void:
-	if(Global.handLevel > 1):
+	if(handLevel >= 1):
 		$Upgrades/HandsButton.text = "(3) Extra Hands (Level " + str(handLevel) + ")";
 	else:
 		$Upgrades/HandsButton.text = "(3) Extra Hands";
