@@ -33,6 +33,8 @@ var gardenLevel: int = 0;
 var handLevel: int = 0;
 var gangstersLevel: int = 0;
 
+signal specialScene;
+
 ## On scene load set the main text for the scene label and button
 func _ready() -> void:
 	
@@ -227,6 +229,8 @@ func _on_machine_button_pressed() -> void:
 		machineCost *= 1.5;
 		$Upgrades/MachineButton.text = "(2) Bubble Machine (Level " + str(machineLevel) + ")";
 	elif(numBubbles >= machineCost):
+		numBubbles -= machineCost;
+		@warning_ignore("standalone_expression")
 		machineCost *+ 1.5;
 		machineLevel += 1;
 		$Upgrades/MachineButton.text = "(2) Bubble Machine (Level " + str(machineLevel) + ")";
@@ -256,6 +260,8 @@ func _on_factory_button_pressed() -> void:
 		factoryCost *= 1.5;
 		$Upgrades/FactoryButton.text = "(4) Bubble Factory (Level " + str(factoryLevel) + ")";
 	elif(numBubbles >= factoryCost):
+		numBubbles -= factoryCost;
+		@warning_ignore("narrowing_conversion")
 		factoryCost *= 1.5;
 		factoryLevel += 1;
 		$Upgrades/FactoryButton.text = "(4) Bubble Factory (Level " + str(factoryLevel) + ")";
@@ -276,6 +282,8 @@ func _on_baby_button_pressed() -> void:
 		babyCost *= 1.5;
 		$Upgrades/BabyButton.text = "(5) Bubble Babies (Level " + str(babyLevel) + ")";
 	elif(numBubbles >= babyCost):
+		numBubbles -= babyCost;
+		@warning_ignore("narrowing_conversion")
 		babyCost *= 1.5;
 		babyLevel += 1;
 		$Upgrades/BabyButton.text = "(5) Bubble Babies (Level " + str(babyLevel) + ")";
@@ -296,7 +304,9 @@ func _on_garden_button_pressed() -> void:
 		gardenCost *= 1.5;
 		$Upgrades/GardenButton.text = "(6) Bubble Garden (Level " + str(gardenLevel) + ")";
 	elif(numBubbles >= gardenCost):
+		numBubbles -= gardenCost;
 		gardenLevel += 1;
+		@warning_ignore("narrowing_conversion")
 		gardenCost *= 1.5;
 		$Upgrades/GardenButton.text = "(6) Bubble Garden (Level " + str(gardenLevel) + ")";
 	if(gardenLevel == 5):
@@ -316,7 +326,9 @@ func _on_gangster_button_pressed() -> void:
 		gangstersCost *= 1.5;
 		$Upgrades/GangsterButton.text = "(7) Bubble Busters (Level " + str(gangstersLevel) + ")";
 	elif(numBubbles >= gangstersCost):
+		numBubbles -= gangstersCost;
 		gangstersLevel += 1;
+		@warning_ignore("narrowing_conversion")
 		gangstersCost *= 1.5;
 		$Upgrades/GangsterButton.text = "(7) Bubble Busters (Level " + str(gangstersLevel) + ")";
 	if(gangstersLevel == 5):

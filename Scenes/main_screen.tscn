@@ -1,17 +1,20 @@
-[gd_scene load_steps=13 format=3 uid="uid://cf8svwc8aj0fm"]
+[gd_scene load_steps=14 format=3 uid="uid://cf8svwc8aj0fm"]
 
 [ext_resource type="PackedScene" uid="uid://bdy6aqijg4o4d" path="res://Scenes/background.tscn" id="1_0amr4"]
 [ext_resource type="Script" path="res://Scripts/main_screen.gd" id="1_5k353"]
 [ext_resource type="PackedScene" uid="uid://cw2kqghoyrwu8" path="res://Scenes/UI.tscn" id="2_yre71"]
 [ext_resource type="AudioStream" uid="uid://biw4pq153fusn" path="res://Audio/Bobber Loop.wav" id="4_8e5jr"]
-[ext_resource type="Texture2D" uid="uid://cbqxcpqefvxex" path="res://Assets/ButtonBack.png" id="5_g4mwv"]
+[ext_resource type="Texture2D" uid="uid://cbqxcpqefvxex" path="res://Assets/Buttons/ButtonBack.png" id="5_g4mwv"]
 [ext_resource type="Texture2D" uid="uid://bk1lrxndfrhe4" path="res://Assets/Framepiece.png" id="5_nfu0e"]
-[ext_resource type="Texture2D" uid="uid://5vw0suenm0u3" path="res://Assets/BubbleBackHover.png" id="6_s8aec"]
+[ext_resource type="Texture2D" uid="uid://5vw0suenm0u3" path="res://Assets/Buttons/BubbleBackHover.png" id="6_s8aec"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_04hsl"]
 texture = ExtResource("6_s8aec")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_guceh"]
+texture = ExtResource("5_g4mwv")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sgnmc"]
 texture = ExtResource("6_s8aec")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a15lv"]
@@ -48,6 +51,7 @@ theme_override_colors/font_focus_color = Color(0, 0, 0.301961, 1)
 theme_override_colors/font_color = Color(0, 0, 0.301961, 1)
 theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_04hsl")
 theme_override_styles/hover = SubResource("StyleBoxTexture_guceh")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_sgnmc")
 theme_override_styles/normal = SubResource("StyleBoxTexture_a15lv")
 text = "Credits"
 
@@ -65,6 +69,7 @@ theme_override_colors/font_focus_color = Color(0, 0, 0.301961, 1)
 theme_override_colors/font_color = Color(0, 0, 0.301961, 1)
 theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_0ct0f")
 theme_override_styles/hover = SubResource("StyleBoxTexture_guceh")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_sgnmc")
 theme_override_styles/normal = SubResource("StyleBoxTexture_v5vea")
 text = "Upgrade Key"
 
@@ -98,9 +103,9 @@ texture = ExtResource("5_nfu0e")
 
 [node name="Right Frame" type="TextureRect" parent="."]
 process_mode = 4
-offset_left = 1266.0
+offset_left = 1260.0
 offset_top = -188.0
-offset_right = 2272.0
+offset_right = 2266.0
 offset_bottom = -39.0
 rotation = 1.57079
 texture = ExtResource("5_nfu0e")
@@ -115,5 +120,6 @@ rotation = 1.57079
 texture = ExtResource("5_nfu0e")
 
 [connection signal="save" from="." to="UI" method="_on_main_save"]
+[connection signal="specialScene" from="UI" to="." method="_on_ui_special_scene"]
 [connection signal="pressed" from="Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="UpgradeKey" to="." method="_on_upgrade_key_pressed"]

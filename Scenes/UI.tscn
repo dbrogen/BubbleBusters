@@ -1,17 +1,17 @@
-[gd_scene load_steps=25 format=3 uid="uid://cw2kqghoyrwu8"]
+[gd_scene load_steps=26 format=3 uid="uid://cw2kqghoyrwu8"]
 
 [ext_resource type="Script" path="res://Scripts/UI.gd" id="1_0almg"]
 [ext_resource type="Texture2D" uid="uid://dmy18ut0iljgj" path="res://Assets/MainBubble.png" id="2_gw5qt"]
 [ext_resource type="Texture2D" uid="uid://xinvlvfuqtny" path="res://Assets/BubbleWands/bubblewand_red.png" id="3_osnui"]
 [ext_resource type="AudioStream" uid="uid://daxjejafaxotf" path="res://Audio/tone1.ogg" id="3_rqf7a"]
-[ext_resource type="Texture2D" uid="uid://cbqxcpqefvxex" path="res://Assets/ButtonBack.png" id="4_6r1li"]
-[ext_resource type="Texture2D" uid="uid://dnc6el8c5wd7d" path="res://Assets/Bubble Machine.png" id="4_h7fcg"]
-[ext_resource type="Texture2D" uid="uid://cdl1uikrqqbmd" path="res://Assets/Extra Hands.png" id="5_8webj"]
-[ext_resource type="Texture2D" uid="uid://dn5qjfusauneh" path="res://Assets/Baby.png" id="5_eya61"]
-[ext_resource type="Texture2D" uid="uid://5vw0suenm0u3" path="res://Assets/BubbleBackHover.png" id="5_l02g0"]
+[ext_resource type="Texture2D" uid="uid://5vw0suenm0u3" path="res://Assets/Buttons/BubbleBackHover.png" id="5_dpnj8"]
 [ext_resource type="Texture2D" uid="uid://bwiirefp0k8o4" path="res://Assets/BubbleWands/bubblewand_orange.png" id="5_l75be"]
-[ext_resource type="Texture2D" uid="uid://ow13xqocw72" path="res://Assets/Bubble Factory.png" id="6_mhwxk"]
-[ext_resource type="Texture2D" uid="uid://cwwuqbdpe1m2p" path="res://Assets/Bubble Garden.png" id="8_a5tc5"]
+[ext_resource type="Texture2D" uid="uid://cbqxcpqefvxex" path="res://Assets/Buttons/ButtonBack.png" id="6_lyovx"]
+[ext_resource type="Texture2D" uid="uid://dnc6el8c5wd7d" path="res://Assets/Upgrades/Bubble Machine.png" id="8_tpp2c"]
+[ext_resource type="Texture2D" uid="uid://cdl1uikrqqbmd" path="res://Assets/Upgrades/Extra Hands.png" id="9_lad53"]
+[ext_resource type="Texture2D" uid="uid://ow13xqocw72" path="res://Assets/Upgrades/Bubble Factory.png" id="10_k2bwk"]
+[ext_resource type="Texture2D" uid="uid://dn5qjfusauneh" path="res://Assets/Upgrades/Baby.png" id="11_s04f8"]
+[ext_resource type="Texture2D" uid="uid://cwwuqbdpe1m2p" path="res://Assets/Upgrades/Bubble Garden.png" id="12_sxsqc"]
 [ext_resource type="Texture2D" uid="uid://bjvr4invc0uvr" path="res://Assets/wood_floor.jpg" id="13_d1bha"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f23hc"]
@@ -27,29 +27,39 @@ events = [SubResource("InputEventKey_b5ii3")]
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4a71y"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4eaqd"]
-texture = ExtResource("4_6r1li")
-texture_margin_left = 50.0
+texture = ExtResource("6_lyovx")
+texture_margin_left = 48.0
+texture_margin_top = 12.0
+texture_margin_right = 48.0
+texture_margin_bottom = 12.0
 expand_margin_top = 14.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ayku1"]
-texture = ExtResource("4_6r1li")
+texture = ExtResource("6_lyovx")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p80kp"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k46kd"]
-texture = ExtResource("5_l02g0")
+texture = ExtResource("5_dpnj8")
 texture_margin_left = 48.0
 texture_margin_right = 48.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uy4nw"]
-texture = ExtResource("4_6r1li")
+texture = ExtResource("5_dpnj8")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jiq75"]
-texture = ExtResource("4_6r1li")
+texture = ExtResource("6_lyovx")
 texture_margin_left = 48.0
 texture_margin_right = 65.0
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1nf7k"]
+texture = ExtResource("6_lyovx")
+texture_margin_left = 48.0
+texture_margin_top = 12.0
+texture_margin_right = 48.0
+texture_margin_bottom = 12.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mcny1"]
 texture = ExtResource("13_d1bha")
@@ -104,13 +114,15 @@ stream = ExtResource("3_rqf7a")
 [node name="BubbleCount" type="Label" parent="."]
 z_index = 4
 layout_mode = 0
-offset_left = 23.0
-offset_top = 32.0
-offset_right = 268.0
-offset_bottom = 75.0
+offset_left = 31.0
+offset_top = 44.0
+offset_right = 330.0
+offset_bottom = 117.0
 theme_override_colors/font_color = Color(0.0313726, 0.0509804, 0.341176, 1)
 theme_override_styles/normal = SubResource("StyleBoxTexture_4eaqd")
 text = "Bubble Count:"
+horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="Upgrades" type="VBoxContainer" parent="."]
 z_index = 4
@@ -167,7 +179,7 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_k46kd")
 theme_override_styles/hover = SubResource("StyleBoxTexture_uy4nw")
 theme_override_styles/normal = SubResource("StyleBoxTexture_jiq75")
 text = "Passive Bubs"
-icon = ExtResource("4_h7fcg")
+icon = ExtResource("8_tpp2c")
 autowrap_mode = 3
 
 [node name="HandsButton" type="Button" parent="Upgrades"]
@@ -183,7 +195,7 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_k46kd")
 theme_override_styles/hover = SubResource("StyleBoxTexture_uy4nw")
 theme_override_styles/normal = SubResource("StyleBoxTexture_jiq75")
 text = "Extra Hands"
-icon = ExtResource("5_8webj")
+icon = ExtResource("9_lad53")
 autowrap_mode = 3
 
 [node name="FactoryButton" type="Button" parent="Upgrades"]
@@ -199,7 +211,7 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_k46kd")
 theme_override_styles/hover = SubResource("StyleBoxTexture_uy4nw")
 theme_override_styles/normal = SubResource("StyleBoxTexture_jiq75")
 text = "Factory"
-icon = ExtResource("6_mhwxk")
+icon = ExtResource("10_k2bwk")
 autowrap_mode = 3
 
 [node name="BabyButton" type="Button" parent="Upgrades"]
@@ -215,7 +227,7 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_k46kd")
 theme_override_styles/hover = SubResource("StyleBoxTexture_uy4nw")
 theme_override_styles/normal = SubResource("StyleBoxTexture_jiq75")
 text = "Babies"
-icon = ExtResource("5_eya61")
+icon = ExtResource("11_s04f8")
 autowrap_mode = 3
 
 [node name="GardenButton" type="Button" parent="Upgrades"]
@@ -231,7 +243,7 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_k46kd")
 theme_override_styles/hover = SubResource("StyleBoxTexture_uy4nw")
 theme_override_styles/normal = SubResource("StyleBoxTexture_jiq75")
 text = "Garden"
-icon = ExtResource("8_a5tc5")
+icon = ExtResource("12_sxsqc")
 autowrap_mode = 3
 
 [node name="GangsterButton" type="Button" parent="Upgrades"]
@@ -254,12 +266,19 @@ autowrap_mode = 3
 wait_time = 10.0
 
 [node name="TimeLeft" type="Label" parent="Timer"]
-offset_left = 31.0
-offset_top = 94.0
-offset_right = 258.0
-offset_bottom = 150.0
+anchors_preset = -1
+anchor_top = -0.0324074
+anchor_right = 0.0512153
+anchor_bottom = 0.0524691
+offset_left = 30.0
+offset_top = 129.0
+offset_right = 270.0
+offset_bottom = 157.0
+theme_override_colors/font_color = Color(0, 0, 0.301961, 1)
+theme_override_styles/normal = SubResource("StyleBoxTexture_1nf7k")
 text = "Time Left: X Seconds"
-metadata/_edit_use_anchors_ = true
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Achievement" type="Label" parent="."]
 visible = false
@@ -269,9 +288,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -240.0
+offset_left = -208.0
 offset_top = -625.0
-offset_right = 46.0
+offset_right = 78.0
 offset_bottom = -523.0
 grow_horizontal = 2
 grow_vertical = 0
